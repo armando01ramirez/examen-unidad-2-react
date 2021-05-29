@@ -5,6 +5,8 @@ import EditUserForm from "./components/AppEditUserForm";
 import { v4 as uudiv4 } from "uuid";
 
 function App() {
+
+  
   const userData = [
     {
       id: 01,
@@ -102,6 +104,81 @@ function App() {
       </div>
     </div>
   );
+
+  const ref = React.createRef();
+
+function App() {
+  return (
+    <div className="container">
+      <h1>Ejemplo exportar datos en React</h1>
+      <hr/>
+      <table class="table" id="table-to-xls">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
+      </tbody>
+    </table>
+
+    <div ref={ref}>
+      <h2>Saludos</h2>
+      
+    </div>
+    
+    <table>
+        <tr>
+          <td><h2>Exportar a  Excel</h2></td>
+          <td><h2>Exportar a PDF</h2></td>
+        </tr>
+        <tr>
+          <td>
+          <ReactHTMLTableToExcel 
+            id="table-to-xls" //id se le coloca a la tabla
+            className="btn btn-success" //es el nombre del boton
+            table="table-to-xls" //nombre de la tabla y es igual al del id
+            filename="tablexls" //nombre del archivo
+            sheet="tablexls" //nombre de la hoja
+            //nombre del boton
+            buttonText="Download as XLS"/>  
+            </td>
+          <td>
+          <Pdf targetRef={ref} filename="code-example.pdf">
+            {({ toPdf }) => <button className="btn btn-primary" onClick={toPdf}>Descargar en Pdf</button>}
+            </Pdf>
+
+          </td>
+        </tr>
+
+      </table>
+
+    </div>
+  );
 }
 
+
+}
 export default App;
+
+
